@@ -1,0 +1,14 @@
+﻿@{
+    ViewBag.Title = "Total Cost";
+}
+
+<h2>Total Cost</h2>
+
+<p>Your pizza cost is: @ViewBag.Cost</p>
+
+<form method="post" action="/Order/SaveOrder">
+    <input type="hidden" name="cost" value="@ViewBag.Cost" />
+    <input type="hidden" name="toppings" value="@ViewBag.Toppings" />
+    <input type="submit" value="Save Order" />
+</form>
+

@@ -1,0 +1,29 @@
+﻿@{
+    ViewBag.Title = "Order List";
+}
+
+<h2>Order List</h2>
+
+@if (ViewBag.Orders != null && ((List<PizzaOrder.Controllers.Order>)ViewBag.Orders).Any())
+{
+    foreach (var order in ViewBag.Orders)
+    {
+        <div class="card" style="width: 18rem;">
+            <div class="card-body">
+                <h5 class="card-title">Order ID: @order.OrderId</h5>
+                <h6 class="card-subtitle mb-2 text-muted">Toppings: @order.Toppings</h6>
+                <p class="card-text">Total Cost: @order.TotalCost</p>
+
+                <!-- Add a form for deleting the order -->
+                <form method="post" action="/Order/DeleteOrder">
+                    <input type="hidden" name="orderId" value="@order.OrderId" />
+                    <input type="submit" class="btn btn-danger" value="Delete" onclick="return confirm('Are you sure you want to delete this order?')" />
+                </form>
+            </div>
+        </div>
+    }
+}
+else
+{
+    <p>No orders have been made yet.</p>
+}
